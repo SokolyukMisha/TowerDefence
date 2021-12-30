@@ -15,19 +15,18 @@ public class EnemyMover : MonoBehaviour
         FindPath();
         ReturnToStart();
         StartCoroutine(FollowPath());
-        
     }
     void Start()
-    {
+    {        
         enemy = GetComponent<Enemy>(); 
     }
     void FindPath()
     {
         Path.Clear();
-        GameObject[] waypoints = GameObject.FindGameObjectsWithTag("Path");
-        foreach (GameObject i in waypoints)
+        GameObject parent = GameObject.FindGameObjectWithTag("Path");
+        foreach (Transform child in parent.transform)
         {
-            WayPoint waypoint = i.GetComponent<WayPoint>();
+            WayPoint waypoint = child.GetComponent<WayPoint>();
 
             if (waypoint != null)
             {
