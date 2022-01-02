@@ -61,3 +61,7 @@ crashlytics-build.properties
 *.xml
 *.iml
 *.unity
+*.meta
+*.meta
+*.meta
+Tower Defense/Assets/Bank/Bank.cs.meta
