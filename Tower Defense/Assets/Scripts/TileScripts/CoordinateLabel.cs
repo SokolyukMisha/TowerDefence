@@ -7,10 +7,10 @@ using TMPro;
 [RequireComponent(typeof(TextMeshPro))]
 public class CoordinateLabel : MonoBehaviour
 {
-    [SerializeField] Color defaultColor = Color.white;
-    [SerializeField] Color blockedColor = Color.grey;
-    [SerializeField] Color exploredColor = Color.yellow;
-    [SerializeField] Color pathColor = Color.black;
+    Color defaultColor = Color.white;
+    Color blockedColor = Color.grey;
+    Color exploredColor = Color.yellow;
+    Color pathColor = Color.black;
 
     TextMeshPro label;
     Vector2Int coordinates = new Vector2Int();
@@ -21,8 +21,8 @@ public class CoordinateLabel : MonoBehaviour
         gridManager = FindObjectOfType<GridManager>();
         waypoint = GetComponentInParent<WayPoint>();
         label = GetComponent<TextMeshPro>();
-        label.enabled = false;       
-        DisplayCoordinates();       
+        label.enabled = false;
+        DisplayCoordinates();
     }
 
     // Update is called once per frame
@@ -31,12 +31,12 @@ public class CoordinateLabel : MonoBehaviour
         if (!Application.isPlaying)
         {
             DisplayCoordinates();
-            UpdateObjectName(); 
+            UpdateObjectName();
         }
         ColorCoordinates();
         ToggleLabels();
     }
-    
+
     void ToggleLabels()
     {
         if (Input.GetKeyDown(KeyCode.C))
@@ -46,29 +46,30 @@ public class CoordinateLabel : MonoBehaviour
     }
     void ColorCoordinates()
     {
-        if(gridManager == null)
-        {
-            return;
-         }
-
-        Node node = gridManager.GetNode(coordinates);
-
-        if(node == null)
+        if (gridManager == null)
         {
             return;
         }
-        else if(!node.isWalkable) {
+
+        Node node = gridManager.GetNode(coordinates);
+
+        if (node == null)
+        {
+            return;
+        }
+        else if (!node.isWalkable)
+        {
             label.color = blockedColor;
-                }
+        }
         else if (node.isPath)
         {
             label.color = pathColor;
         }
-        else if(node.isExplored) 
+        else if (node.isExplored)
         {
             label.color = exploredColor;
         }
-       
+
         else
         {
             label.color = defaultColor;
@@ -77,8 +78,11 @@ public class CoordinateLabel : MonoBehaviour
 
     void DisplayCoordinates()
     {
-        coordinates.x = Mathf.RoundToInt(transform.parent.position.x / UnityEditor.EditorSnapSettings.move.x);
-        coordinates.y = Mathf.RoundToInt(transform.parent.position.z / UnityEditor.EditorSnapSettings.move.z);
+        if (gridManager == null){
+            return;
+    }
+        coordinates.x = Mathf.RoundToInt(transform.parent.position.x / gridManager.UnityGridSize);
+        coordinates.y = Mathf.RoundToInt(transform.parent.position.z / gridManager.UnityGridSize);
         label.text = coordinates.x + "," + coordinates.y;
     }
     void UpdateObjectName()

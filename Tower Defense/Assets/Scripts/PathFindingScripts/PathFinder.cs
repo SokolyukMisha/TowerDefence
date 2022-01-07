@@ -21,7 +21,7 @@ public class PathFinder : MonoBehaviour
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
-        if(gridManager != null)
+        if (gridManager != null)
         {
             grid = gridManager.Grid;
         }
@@ -38,7 +38,7 @@ public class PathFinder : MonoBehaviour
     {
         List<Node> neighbors = new List<Node>();
 
-        foreach(Vector2Int direction in directions)
+        foreach (Vector2Int direction in directions)
         {
             Vector2Int neighborCoords = currentSearchNode.coordinates + direction;
             if (grid.ContainsKey(neighborCoords))
@@ -46,9 +46,9 @@ public class PathFinder : MonoBehaviour
                 neighbors.Add(grid[neighborCoords]);
             }
         }
-        foreach(Node neighbor in neighbors)
+        foreach (Node neighbor in neighbors)
         {
-            if(!reached.ContainsKey(neighbor.coordinates) && neighbor.isWalkable)
+            if (!reached.ContainsKey(neighbor.coordinates) && neighbor.isWalkable)
             {
                 neighbor.connectedTo = currentSearchNode;
                 reached.Add(neighbor.coordinates, neighbor);
@@ -62,12 +62,12 @@ public class PathFinder : MonoBehaviour
         bool isRunning = true;
         frontier.Enqueue(startNode);
         reached.Add(startCoordinates, startNode);
-        while(frontier.Count > 0 && isRunning)
+        while (frontier.Count > 0 && isRunning)
         {
             currentSearchNode = frontier.Dequeue();
             currentSearchNode.isExplored = true;
             ExploreNeighbors();
-            if(currentSearchNode.coordinates == destinationCoordinates)
+            if (currentSearchNode.coordinates == destinationCoordinates)
             {
                 isRunning = false;
             }
@@ -81,7 +81,7 @@ public class PathFinder : MonoBehaviour
         path.Add(currentNode);
         currentNode.isPath = true;
 
-        while(currentNode.connectedTo != null)
+        while (currentNode.connectedTo != null)
         {
             currentNode = currentNode.connectedTo;
             path.Add(currentNode);
