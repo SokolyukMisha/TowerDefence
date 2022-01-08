@@ -15,11 +15,13 @@ public class WayPoint : MonoBehaviour
         }
     }
     GridManager gridManager;
+    PathFinder pathFinder;
     Vector2Int coordinates = new Vector2Int();
 
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
+        pathFinder = FindObjectOfType<PathFinder>();
     }
 
     void Start()
@@ -37,10 +39,11 @@ public class WayPoint : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (isPlaceable)
+        if (gridManager.GetNode(coordinates).isWalkable && !pathFinder.WillBlockPath(coordinates))
         {
             bool isPlaced = towerPrefab.CreateTower(towerPrefab, transform.position);
             isPlaceable = !isPlaced;
+            gridManager.BlockNode(coordinates);
         }
     }
     
