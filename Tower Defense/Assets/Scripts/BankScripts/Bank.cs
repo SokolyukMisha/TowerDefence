@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class Bank : MonoBehaviour
 {
@@ -10,7 +8,7 @@ public class Bank : MonoBehaviour
     int currentBalance;
     public int CurrentBalance { get { return currentBalance; } }
 
-    [SerializeField] TextMeshProUGUI displayBalance;  
+    [SerializeField] TextMeshProUGUI displayBalance;
 
     void Awake()
     {

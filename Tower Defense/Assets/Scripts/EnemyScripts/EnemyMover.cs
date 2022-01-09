@@ -7,7 +7,7 @@ public class EnemyMover : MonoBehaviour
 {
     List<Node> path = new List<Node>();
 
-    [SerializeField][Range(0,5)] float speed = 1f;
+    [SerializeField] [Range(0, 5)] float speed = 1f;
 
     Enemy enemy;
     GridManager gridManager;
@@ -16,13 +16,13 @@ public class EnemyMover : MonoBehaviour
     void OnEnable()
     {
         ReturnToStart();
-        RecalculatePath(true);              
+        RecalculatePath(true);
     }
     void Awake()
-    {        
-        enemy = GetComponent<Enemy>(); 
-        gridManager = FindObjectOfType<GridManager>(); 
-        pathFinder = FindObjectOfType<PathFinder>(); 
+    {
+        enemy = GetComponent<Enemy>();
+        gridManager = FindObjectOfType<GridManager>();
+        pathFinder = FindObjectOfType<PathFinder>();
     }
     void RecalculatePath(bool resetPath)
     {
@@ -52,7 +52,7 @@ public class EnemyMover : MonoBehaviour
     }
     IEnumerator FollowPath()
     {
-        for(int i = 1; i < path.Count; i++)  
+        for (int i = 1; i < path.Count; i++)
         {
             Vector3 startPosition = transform.position;
             Vector3 endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);

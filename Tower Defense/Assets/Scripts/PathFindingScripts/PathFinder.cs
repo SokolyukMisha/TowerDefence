@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -132,7 +131,7 @@ public class PathFinder : MonoBehaviour
             List<Node> newPath = GetNewPath();
             grid[coordinates].isWalkable = previousState;
 
-            if(newPath.Count <= 1)
+            if (newPath.Count <= 1)
             {
                 GetNewPath();
                 return true;

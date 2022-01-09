@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 [ExecuteAlways]
 [RequireComponent(typeof(TextMeshPro))]
@@ -78,9 +76,10 @@ public class CoordinateLabel : MonoBehaviour
 
     void DisplayCoordinates()
     {
-        if (gridManager == null){
+        if (gridManager == null)
+        {
             return;
-    }
+        }
         coordinates.x = Mathf.RoundToInt(transform.parent.position.x / gridManager.UnityGridSize);
         coordinates.y = Mathf.RoundToInt(transform.parent.position.z / gridManager.UnityGridSize);
         label.text = coordinates.x + "," + coordinates.y;

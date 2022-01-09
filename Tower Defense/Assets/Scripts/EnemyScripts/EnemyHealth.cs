@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Enemy))]
@@ -23,13 +21,13 @@ public class EnemyHealth : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        ProccessHit();    
+        ProccessHit();
     }
     void ProccessHit()
     {
         currentHP--;
-        if(currentHP <= 0)
-        {            
+        if (currentHP <= 0)
+        {
             gameObject.SetActive(false);
             maxHitPoints += difficultyRamp;
             enemy.RewardGold();

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WayPoint : MonoBehaviour
@@ -11,7 +9,7 @@ public class WayPoint : MonoBehaviour
     {
         get
         {
-            return isPlaceable; 
+            return isPlaceable;
         }
     }
     GridManager gridManager;
@@ -49,5 +47,5 @@ public class WayPoint : MonoBehaviour
             }
         }
     }
-    
+
 }
